@@ -26,8 +26,8 @@ async function loadEcoScoreData() {
 
             listItem.innerHTML = `
                 <span ${merchantStyle}>${tx.merchant} (${tx.mcc})</span>
-                <span class="tx-amount">$${tx.amount.toFixed(2)}</span>
-            `;
+                <span class="tx-amount">₹${tx.amount.toFixed(2)}</span> 
+        `;
             txList.appendChild(listItem);
         });
 
@@ -39,4 +39,5 @@ async function loadEcoScoreData() {
 }
 
 // Execute the function when the page loads
+
 loadEcoScoreData();
