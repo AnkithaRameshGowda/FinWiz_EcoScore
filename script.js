@@ -42,3 +42,32 @@ async function loadEcoScoreData() {
 
 loadEcoScoreData();
 
+//enhance
+// --- SCROLL-TRIGGERED ANIMATION LOGIC (The Magic) ---
+
+// 1. Get all elements we want to animate
+const detailCards = document.querySelectorAll('.detail-card');
+
+// 2. Function to check if an element is in view
+function checkVisibility() {
+    // Loop through each detail card
+    detailCards.forEach(card => {
+        // Find the position of the element relative to the viewport
+        const cardTop = card.getBoundingClientRect().top;
+        const screenHeight = window.innerHeight;
+        
+        // If the top of the card is less than 85% of the screen height (meaning it's visible)
+        if (cardTop < screenHeight * 0.85) {
+            // Apply the 'is-visible' class to trigger the CSS transition
+            card.classList.add('is-visible');
+        }
+    });
+}
+
+// 3. Attach the function to the scroll event
+window.addEventListener('scroll', checkVisibility);
+
+// 4. Run once on page load to check if elements are already visible
+checkVisibility();
+
+
