@@ -1,0 +1,36 @@
+{
+    "score": 42,
+    "reward": "\ud83d\udcc8 Keep Improving: Focus on reducing travel and food impact to climb tiers.",
+    "transactions": [
+        {
+            "merchant": "GreenEnergy Co.",
+            "amount": 120.5,
+            "mcc": "4900"
+        },
+        {
+            "merchant": "Local Farmers Market",
+            "amount": 45.75,
+            "mcc": "5499"
+        },
+        {
+            "merchant": "MegaBurger Chain",
+            "amount": 25.0,
+            "mcc": "5814"
+        },
+        {
+            "merchant": "City Metro Pass",
+            "amount": 15.0,
+            "mcc": "4111"
+        },
+        {
+            "merchant": "Interstate Airlines",
+            "amount": 450.0,
+            "mcc": "3001"
+        },
+        {
+            "merchant": "Local Groceries",
+            "amount": 80.0,
+            "mcc": "5411"
+        }
+    ]
+}
