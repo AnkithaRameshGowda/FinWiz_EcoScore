@@ -159,10 +159,23 @@ body {
     color: #777;
 }
 
-/* Keyframe Animation for a subtle "magic" fade-in */
-@keyframes fadeInSlide {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Go to style.css and find the .detail-card class */
+/* Change it to this: */
+.detail-card {
+    background-color: #f1f8e9;
+    border-left: 5px solid var(--green-light);
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+    /* INITIAL STATE: Hidden and lower */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
+    text-align: left;
+}
+
+/* THE MAGIC CLASS: This is applied by JavaScript when the user scrolls to it */
+.detail-card.is-visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Slides up to its original position */
 }
