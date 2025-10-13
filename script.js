@@ -6,7 +6,27 @@ async function loadEcoScoreData() {
         const data = await response.json();
 
         // Update the Score Section
-        document.getElementById('ecoscore-value').innerText = data.score;
+        // ADD THIS FUNCTION CALL INSTEAD:
+        animateScore(data.score);
+
+        // --- SCORE COUNT-UP ANIMATION ---
+        function animateScore(finalScore) {
+            const scoreElement = document.getElementById('ecoscore-value');
+            let currentScore = 0;
+            const duration = 1500; // Animation duration in milliseconds (1.5 seconds)
+            const stepTime = Math.abs(Math.floor(duration / finalScore)); // Time per score increment
+        
+            const timer = setInterval(() => {
+                currentScore += 1; // Increment by 1
+                scoreElement.innerText = currentScore; // Update the displayed number
+        
+                if (currentScore >= finalScore) {
+                    // Stop the animation once the final score is reached
+                    clearInterval(timer);
+                    scoreElement.innerText = finalScore; // Ensure it settles on the exact number
+                }
+            }, stepTime);
+        }
         
         // Update the Reward Section
         document.getElementById('reward-text').innerText = data.reward;
@@ -69,5 +89,6 @@ window.addEventListener('scroll', checkVisibility);
 
 // 4. Run once on page load to check if elements are already visible
 checkVisibility();
+
 
 
