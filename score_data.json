@@ -1,0 +1,36 @@
+{
+    "score": 31,
+    "reward": "\ud83d\udcc8 Keep Improving: Focus on reducing travel and food impact to climb tiers.",
+    "transactions": [
+        {
+            "merchant": "Tata Power Utilities",
+            "amount": 1800.0,
+            "mcc": "4900"
+        },
+        {
+            "merchant": "Local Sabzi Mandi",
+            "amount": 550.0,
+            "mcc": "5499"
+        },
+        {
+            "merchant": "McDonald's/Burger King",
+            "amount": 3500.0,
+            "mcc": "5814"
+        },
+        {
+            "merchant": "Bengaluru Namma Metro Top-up",
+            "amount": 300.0,
+            "mcc": "4111"
+        },
+        {
+            "merchant": "IndiGo/Air India Flight",
+            "amount": 38000.0,
+            "mcc": "3001"
+        },
+        {
+            "merchant": "Reliance Smart/DMart",
+            "amount": 7500.0,
+            "mcc": "5411"
+        }
+    ]
+}
