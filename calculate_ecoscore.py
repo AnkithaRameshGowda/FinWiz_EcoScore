@@ -2,18 +2,18 @@ import json
 import os
 
 # --- 1. SIMULATED DATA ---
+# --- 1. SIMULATED DATA (Updated for Indian Brands, Realistic INR values, and High Impact) ---
 # Sample transaction data with Merchant Category Codes (MCC)
 transactions = [
-  {"merchant": "GreenEnergy Co.", "amount": 120.50, "mcc": "4900"},
-  {"merchant": "Local Farmers Market", "amount": 45.75, "mcc": "5499"},
-  {"merchant": "MegaBurger Chain", "amount": 25.00, "mcc": "5814"},
-  {"merchant": "City Metro Pass", "amount": 15.00, "mcc": "4111"},
-  {"merchant": "Interstate Airlines", "amount": 450.00, "mcc": "3001"},
-  {"merchant": "Local Groceries", "amount": 80.00, "mcc": "5411"},
+  {"merchant": "Tata Power Utilities", "amount": 1800.00, "mcc": "4900"},     # Green Utility Bill
+  {"merchant": "Local Sabzi Mandi", "amount": 550.00, "mcc": "5499"},         # Low-Impact Local Produce
+  {"merchant": "McDonald's/Burger King", "amount": 3500.00, "mcc": "5814"},    # High-Impact Fast Food (simulated monthly spend)
+  {"merchant": "Bengaluru Namma Metro Top-up", "amount": 300.00, "mcc": "4111"},   # Low-Impact Public Transport
+  {"merchant": "IndiGo/Air India Flight", "amount": 38000.00, "mcc": "3001"},  # Highest Impact Travel (Domestic Flight)
+  {"merchant": "Reliance Smart/DMart", "amount": 7500.00, "mcc": "5411"},     # Standard Groceries
 ]
 
-# Carbon Impact Index (Lower number = Lower Carbon Footprint = Better for score)
-# This mapping proves the idea's technical feasibility (Code Marks)
+# Carbon Impact Index (MCC mapping remains the same)
 carbon_index = {
   "4900": 1,  # Utilities (Assumed Green Energy)
   "5499": 2,  # Misc. Food (Local/Sustainable)
@@ -71,4 +71,5 @@ with open(output_file, 'w') as f:
   json.dump(output_data, f, indent=4)
 
 print(f"EcoScore calculated: {final_score}")
+
 print(f"Data saved to {output_file} for dashboard.")
