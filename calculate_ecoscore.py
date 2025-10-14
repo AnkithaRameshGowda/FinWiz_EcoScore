@@ -3,24 +3,28 @@ import os
 
 # --- 1. SIMULATED DATA ---
 # Sample transaction data with Merchant Category Codes (MCC)
+# --- 1. SIMULATED DATA (Finalized Indian Brands & Logical Contrast) ---
 transactions = [
   {"merchant": "Tata Power Utilities", "amount": 1800.00, "mcc": "4900"},     # Green Utility Bill
   {"merchant": "Local Sabzi Mandi", "amount": 550.00, "mcc": "5499"},         # Low-Impact Local Produce
-  {"merchant": "McDonald's/Burger King", "amount": 3500.00, "mcc": "5814"},    # High-Impact Fast Food (simulated monthly spend)
+  {"merchant": "McDonald's/Burger King", "amount": 3500.00, "mcc": "5814"},    # High-Impact Fast Food
   {"merchant": "Bengaluru Namma Metro Top-up", "amount": 300.00, "mcc": "4111"},   # Low-Impact Public Transport
-  {"merchant": "IndiGo/Air India Flight", "amount": 38000.00, "mcc": "3001"},  # Highest Impact Travel (Domestic Flight)
+  {"merchant": "IndiGo/Air India Flight", "amount": 38000.00, "mcc": "3001"},  # Highest Impact Travel (Flight)
   {"merchant": "Reliance Smart/DMart", "amount": 7500.00, "mcc": "5411"},     # Standard Groceries
+  {"merchant": "Ola/Uber Long Trip", "amount": 1200.00, "mcc": "4121"},       # New: High-Impact Local Transport (Cab)
 ]
 
-# Carbon Impact Index (MCC mapping remains the same)
+# Carbon Impact Index (MCC mapping - adding 4121)
 carbon_index = {
   "4900": 1,  # Utilities (Assumed Green Energy)
   "5499": 2,  # Misc. Food (Local/Sustainable)
-  "4111": 3,  # Public Transport
+  "4111": 3,  # Public Transport (Metro/Bus - Low Impact)
   "5411": 4,  # Standard Groceries
   "5814": 8,  # Fast Food / High Impact
+  "4121": 6,  # Taxis/Cabs (High Impact Local Transport)
   "3001": 10 # Airlines / Highest Impact
 }
+# The rest of the Python code remains the same...
 
 # --- 2. THE CALCULATION ENGINE ---
 def calculate_ecoscore(tx_list, index):
@@ -72,4 +76,5 @@ with open(output_file, 'w') as f:
 print(f"EcoScore calculated: {final_score}")
 
 print(f"Data saved to {output_file} for dashboard.")
+
 
