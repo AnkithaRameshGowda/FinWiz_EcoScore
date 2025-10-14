@@ -12,11 +12,44 @@
     padding: 0;
 }
 
+/* --- 1. AMBIENT BACKGROUND ANIMATION & DARK THEME --- */
+@keyframes backgroundShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 body {
+    /* Dark background to make the glow and globe pop */
+    background-color: #0d1117; 
+    
+    /* Define the subtle animated gradient (dark blue/green for energy) */
+    background: linear-gradient(-45deg, #0d1117, #162436, #0e1e21, #0d1117);
+    
+    /* Set the size and animation properties */
+    background-size: 400% 400%; 
+    animation: backgroundShift 20s ease infinite; 
+    
+    color: #f0f6fc; /* Light text for contrast */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--gray-bg);
-    color: var(--font-color);
     padding: 20px;
+    position: relative; 
+}
+
+/* Ensure the main dashboard content sits nicely */
+.dashboard-container {
+    background-color: rgba(255, 255, 255, 0.05); /* Very slight transparency over dark bg */
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 450px;
 }
 
 .header {
@@ -24,13 +57,37 @@ body {
     margin-bottom: 30px;
 }
 
-.score-section {
-    background-color: white;
+/* --- 2. PULSATING GLOW ANIMATION KEYFRAMES --- */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 5px rgba(103, 179, 107, 0.5), 0 0 10px rgba(103, 179, 107, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(103, 179, 107, 0.9), 0 0 20px rgba(103, 179, 107, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(103, 179, 107, 0.5), 0 0 10px rgba(103, 179, 107, 0.2);
+    }
+}
+
+.score-section,
+.reward-box,
+.transactions-list,
+.info-section {
+    /* Base styling for all cards (semi-transparent dark) */
+    background-color: rgba(255, 255, 255, 0.08); 
     border-radius: 15px;
-    box-shadow: var(--shadow);
-    padding: 30px 20px;
-    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.1); /* Subtle green outer glow */
+    padding: 20px;
     margin-bottom: 20px;
+    color: #f0f6fc; /* Light text color for contrast */
+}
+
+.score-section,
+.reward-box {
+    /* Apply the pulsating glow to key elements */
+    animation: pulseGlow 5s infinite alternate ease-in-out; 
+    text-align: center;
 }
 
 .score-circle {
@@ -48,19 +105,19 @@ body {
     font-weight: bold;
 }
 
-.reward-box {
-    background-color: #e8f6ef;
-    border: 2px solid var(--green-light);
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    text-align: center;
+/* --- NEON GLOW FOR THE SCORE VALUE (MUST BE APPLIED BY JAVASCRIPT) --- */
+.ecoscore-value {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--green-light); 
+    /* Neon Glow */
+    text-shadow: 0 0 5px var(--green-light), 0 0 10px var(--green-dark); 
 }
 
 .reward-message {
     font-size: 1.1em;
     font-weight: 600;
-    color: var(--green-dark);
+    color: var(--green-light); /* Light green for visibility */
     margin-bottom: 15px;
 }
 
@@ -72,18 +129,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .action-button:hover {
     background-color: #1a6d3c;
-}
-
-.transactions-list {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    padding: 20px;
+    box-shadow: 0 0 15px var(--green-light); /* Hover glow */
 }
 
 #tx-list {
@@ -95,7 +146,7 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Lighter divider for dark theme */
 }
 
 #tx-list li:last-child {
@@ -104,53 +155,79 @@ body {
 
 .tx-amount {
     font-weight: bold;
-    color: #c0392b; /* Use a distinct color for amounts */
+    color: #ff9999; /* Reddish color for expense visibility */
 }
 
-/* --- MOBILE RESPONSIVENESS (Media Query) --- */
-/* This ensures the design score is high */
-@media (min-width: 600px) {
-    body {
-        max-width: 500px;
-        margin: 0 auto;
-        padding: 30px;
-    }
+/* --- 3. GLOBE BACKGROUND STYLING --- */
 
+.globe-background {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* Behind everything else */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.3; 
 }
-/* --- NEW STYLING FOR CREATIVE SECTION --- */
 
-.info-section {
-    padding: 20px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    margin-top: 20px;
-    text-align: center;
+#spinning-globe {
+    width: 150%; 
+    height: 150%;
+    object-fit: cover;
+    /* FUTURISTIC EFFECT */
+    filter: hue-rotate(180deg) brightness(0.7) blur(1px); 
+    transform: scale(0.8); 
 }
+
+
+/* --- 4. SECTION REVEAL ANIMATION (Applied by script.js) --- */
+
+.reveal-section {
+    opacity: 0; 
+    transform: translateY(30px); 
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
+}
+
+.reveal-section.is-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered delay ensures they animate one after another */
+.score-section.is-revealed { transition-delay: 0s; }
+.reward-box.is-revealed { transition-delay: 0.15s; }
+.transactions-list.is-revealed { transition-delay: 0.3s; }
+.info-section.is-revealed { transition-delay: 0.45s; }
+
+
+/* --- 5. CARBON IMPACT DETAILS STYLING (Adjusted for Dark Theme) --- */
 
 .detail-card {
-    background-color: #f1f8e9; /* Light green background */
+    background-color: rgba(15, 120, 15, 0.2); /* Semi-transparent green background */
     border-left: 5px solid var(--green-light);
     padding: 15px;
     margin: 15px 0;
     border-radius: 8px;
-    opacity: 0; /* Starts hidden for the animation */
-    transform: translateY(20px); /* Starts 20px lower */
-    animation: fadeInSlide 1.5s ease-out forwards;
-    animation-delay: 0.5s; /* Delay ensures it animates after page load */
     text-align: left;
+    
+    /* Ensure reveal classes override this */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; 
 }
 
 .impact-stat {
     font-size: 1.1em;
     font-weight: bold;
-    color: var(--green-dark);
+    color: var(--green-light); 
     margin-bottom: 5px;
 }
 
 .suggestion {
     font-size: 0.9em;
-    color: #555;
+    color: #a0a8b3; /* Light gray for body text */
 }
 
 .call-to-action {
@@ -159,23 +236,11 @@ body {
     color: #777;
 }
 
-/* Go to style.css and find the .detail-card class */
-/* Change it to this: */
-.detail-card {
-    background-color: #f1f8e9;
-    border-left: 5px solid var(--green-light);
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 8px;
-    /* INITIAL STATE: Hidden and lower */
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Smooth transition */
-    text-align: left;
-}
-
-/* THE MAGIC CLASS: This is applied by JavaScript when the user scrolls to it */
-.detail-card.is-visible {
-    opacity: 1; /* Fully visible */
-    transform: translateY(0); /* Slides up to its original position */
+/* --- MOBILE RESPONSIVENESS --- */
+@media (min-width: 600px) {
+    body {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 30px;
+    }
 }
