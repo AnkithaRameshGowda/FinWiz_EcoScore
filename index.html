@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<title>EcoScore: Carbon-Linked Rewards.</title>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,47 +7,59 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <h1>EcoScore Dashboard 🌳</h1>
-        <p>Your financial score for planetary health.</p>
-    </div>
-
-    <div class="score-section">
-        <div class="score-circle">
-            <span id="ecoscore-value">--</span>
+    
+    <div id="loading-screen">
+        <div class="loader-content">
+            <h1>EcoScore</h1>
+            <p>Accessing Secure Financial Data...</p>
+            <div class="loader-bar"></div>
         </div>
-        <h2>Your Current EcoScore</h2>
-        <p class="score-detail">Updated based on your last 30 days of spending.</p>
     </div>
 
-    <div class="reward-box">
-        <h2>Reward Status</h2>
-        <p id="reward-text" class="reward-message">Loading reward information...</p>
-        <button class="action-button">View Green Loan Offers</button>
+    <div class="globe-background">
+        <img src="assets/earth_spin.gif" alt="Spinning Digital Earth" id="spinning-globe">
     </div>
 
-    <div class="transactions-list">
-        <h2>Spending Breakdown</h2>
-        <ul id="tx-list">
-            </ul>
-    </div>
-    
-    <div class="info-section">
-        <h2>Your Carbon Impact Details 📊</h2>
-        <div class="detail-card">
-            <p class="impact-stat">Travel Impact: **High**</p>
-            <p class="suggestion">Suggestion: Next time you take a cab, try **Bengaluru Namma Metro** (4111) instead of **Ola/Uber** (4121) to instantly boost your score.</p>
-    </div>
-        <div class="detail-card">
-            <p class="impact-stat">Food Impact: **Medium**</p>
-            <p class="suggestion">Suggestion: Prioritize **Local Sabzi Mandi** (5499) over chain restaurants to lower the carbon footprint of your groceries.</p>
-    </div>
-        <p class="call-to-action">Every rupee spent is a vote for the planet. Check back next month!</p>
-    </div>
-    
-    <script src="script.js"></script>
+    <div class="dashboard-container">
+        
+        <div class="header">
+            <h1>EcoScore Dashboard 🌳</h1>
+            <p>Your financial score for planetary health.</p>
+        </div>
+
+        <div class="score-section reveal-section">
+            <div class="score-circle">
+                <span id="ecoscore-value">--</span>
+            </div>
+            <h2>Your Current EcoScore</h2>
+            <p class="score-detail">Updated based on your last 30 days of spending.</p>
+        </div>
+
+        <div class="reward-box reveal-section">
+            <h2>Reward Status</h2>
+            <p id="reward-text" class="reward-message">Loading reward information...</p>
+            <button class="action-button">View Green Loan Offers</button>
+        </div>
+
+        <div class="transactions-list reveal-section">
+            <h2>Spending Breakdown</h2>
+            <ul id="tx-list">
+                </ul>
+        </div>
+        
+        <div class="info-section" id="impact-details">
+            <h2>Your Carbon Impact Details 📊</h2>
+            <div class="detail-card">
+                <p class="impact-stat">Travel Impact: **High**</p>
+                <p class="suggestion">Suggestion: Next time you take a cab, try **Bengaluru Namma Metro** (4111) instead of **Ola/Uber** (4121) to instantly boost your score.</p>
+            </div>
+            <div class="detail-card">
+                <p class="impact-stat">Food Impact: **Medium**</p>
+                <p class="suggestion">Suggestion: Prioritize **Local Sabzi Mandi** (5499) over chain restaurants to lower the carbon footprint of your groceries.</p>
+            </div>
+            <p class="call-to-action">Every rupee spent is a vote for the planet. Check back next month!</p>
+        </div>
+        
+    </div> <script src="script.js"></script>
 </body>
-
 </html>
-
-
